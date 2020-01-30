@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import {Text, View} from 'react-native'
+import {Text, View, TouchableOpacity} from 'react-native'
 import {Card} from 'react-native-elements'
 import ComConst from '../Utils/ComConst';
-import ComStyles from '../pages/css/ComStyles';
+import ComStyles from '../pages/css/ComStyles'
 
 export default class TaskItem extends React.Component {
   render () {
@@ -21,7 +21,13 @@ export default class TaskItem extends React.Component {
     }
 
     return <Card containerStyle={this.props.isLast ? {marginBottom: 70} : {}}>
-      <View style={ComStyles.taskItemCard}>
+      <TouchableOpacity 
+        style={ComStyles.taskItemCard}
+        activeOpacity={1}
+        onPress={() => {
+          this.props.router('TaskDone', this.props.data)
+        }}
+      >
         <View style={ComStyles.taskItemIcon}>
           {iconNode}
         </View>
@@ -36,7 +42,7 @@ export default class TaskItem extends React.Component {
             style={{color: ComConst.THEME_COLOR}}
           />
         </View>
-      </View>
+      </TouchableOpacity>
     </Card>
   }
 }

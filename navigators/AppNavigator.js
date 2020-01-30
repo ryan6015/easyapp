@@ -7,13 +7,16 @@ import JournalPage from '../pages/journal/JournalPage'
 import IndexPage from '../pages/indexPage/IndexPage'
 import MyPage from '../pages/mypage/MyPage'
 import TaskPage from '../pages/task/TaskPage'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
+import TaskDone from '../pages/task/TaskDone'
+import AddTask from '../pages/task/AddTask'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Entypo from 'react-native-vector-icons/Entypo'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 const tabBarLabelFontSize = 26
 
 const switchNav = createStackNavigator({
+  // 欢迎页
   WelcomePage: {
     screen: WelcomePage,
     navigationOptions: {
@@ -77,9 +80,31 @@ const mainNav = createBottomTabNavigator({
   }
 })
 
+const pages = createStackNavigator({
+  Home: {
+    screen: mainNav,
+    navigationOptions: {
+      header: null
+    }
+  },
+  // 任务打卡页面
+  TaskDone: {
+    screen: TaskDone,
+    navigationOptions: {
+      title: '打卡'
+    }
+  },
+  AddTask: {
+    screen: AddTask,
+    navigationOptions: {
+      title: '添加任务'
+    }
+  }
+})
+
 export const AppStackNavigator = createSwitchNavigator({
   initPage: switchNav,
-  mainNav: mainNav
+  mainNav: pages
 },{
   navigationOptions: {
     header: null

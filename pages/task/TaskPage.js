@@ -6,6 +6,8 @@ import ComConst from '../../Utils/ComConst'
 import TaskItem from '../../components/TaskItem'
 import Storage from '../../Utils/Storage'
 import {Dimensions} from 'react-native'
+import Img from '../image/Img';
+import ComUtil from '../../Utils/ComUtil';
 const {width} = Dimensions.get('window')
 
 export default class TaskPage  extends React.Component { 
@@ -20,6 +22,7 @@ export default class TaskPage  extends React.Component {
     let data = []
     for (let i = 0; i < 10; i++) {
       data.push({
+        gid: ComUtil.uuid(),
         title: '打卡任务' + i,
         cycle: [0, 1, 2, 3, 4, 5, 6],
         icon: 'AntDesign/notification',
@@ -38,9 +41,7 @@ export default class TaskPage  extends React.Component {
           dataList: res || []
         })
       }
-    ).catch(err => {
-
-    })
+    )
   }
 
   componentDidMount () {
@@ -51,13 +52,14 @@ export default class TaskPage  extends React.Component {
   render () {
     let taskList
     let len = this.state.dataList.length
+    const {navigation} = this.props
     if (len > 0) {
       taskList = this.state.dataList.map((item, index) => {
         let isLast = false
         if (index === len - 1) {
           isLast = true
         }
-        return <TaskItem data={item} key={index} isLast={isLast}/>
+        return <TaskItem data={item} key={index} isLast={isLast} router={navigation.navigate} />
       })
     } else {
       taskList = <View style={ComStyles.noData}><Text style={ComStyles.noDataText}>暂无数据</Text></View>
@@ -65,7 +67,7 @@ export default class TaskPage  extends React.Component {
     
     return <View style={ComStyles.container}>
       <Image
-        source={require('../../assets/images/sun.jpg')}
+        source={Img.SUN}
         style={{width, height: 150}}
       />
       <ScrollView>
@@ -76,6 +78,9 @@ export default class TaskPage  extends React.Component {
         icon={{name: 'plus', type: 'font-awesome', color: '#fff'}}
         containerStyle={ComStyles.taskAdd}
         overlayContainerStyle={{backgroundColor: ComConst.THEME_COLOR}}
+        onPress={() => {
+          navigation.navigate('AddTask')
+        }}
       />
     </View>
   }

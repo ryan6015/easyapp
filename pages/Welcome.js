@@ -4,6 +4,7 @@ import ComStyles from './css/ComStyles'
 import NavigationUtil from '../navigators/NavigationUtil'
 import {Image} from 'react-native-elements'
 import {Dimensions} from 'react-native'
+import Img from './image/Img';
 const {width, height} = Dimensions.get('window')
 
 export default class WelcomePage  extends React.Component {
@@ -36,7 +37,7 @@ export default class WelcomePage  extends React.Component {
   render () {
     return <View style={ComStyles.welcontainer}>
       <Image
-        source={require('../assets/images/sun.jpg')}
+        source={Img.SUN}
         style={{width: this.state.imgWidth, height: this.state.imgHeight}}
       />
       <Text style={ComStyles.weltext}>Hi,欢迎</Text>
