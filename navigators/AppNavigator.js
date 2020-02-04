@@ -89,10 +89,7 @@ const pages = createStackNavigator({
   },
   // 任务打卡页面
   TaskDone: {
-    screen: TaskDone,
-    navigationOptions: {
-      title: '打卡'
-    }
+    screen: TaskDone
   },
   AddTask: {
     screen: AddTask,

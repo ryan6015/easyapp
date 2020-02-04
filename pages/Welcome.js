@@ -28,7 +28,7 @@ export default class WelcomePage  extends React.Component {
     this.setImageSize()
     this.timer = setTimeout(() => {
       NavigationUtil.resetToHomePage(this.props)
-    }, 20);
+    }, 2000);
   }
   componentWillUnmount () {
     this.timer && clearTimeout(this.timer)

@@ -27,7 +27,7 @@ export default class TaskPage  extends React.Component {
         cycle: [0, 1, 2, 3, 4, 5, 6],
         icon: 'AntDesign/notification',
         count: 0,
-        lastTime: null
+        lastTime: ''
       })
     }
     Storage.save(ComConst.TASK_DATA, data)
